@@ -1,18 +1,27 @@
 import React, { FC, useState } from 'react'
-import Slide from '@material-ui/core/Slide'
-import ShopB from './ShopB/ShopB'
-import ShopA from './ShopA/ShopA'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Shop from './Shop/Shop'
+import Slide from "@material-ui/core/Slide";
+import useStyles from './MainContainer.style';
 
 const MainContainer: FC = () => {
-
-    const [shopVariant, setShopVariant] = useState('a')
+    /*
+        Shop variant that is true represents shop A, false represents shop B
+    */
+    const [shopVariant, setShopVariant] = useState(true)
+    const classes = useStyles();
 
     return (
         <div>
-            <button onClick={() => setShopVariant('b')}>click</button>
-            <ShopA/>
-            
+            <Slide timeout={3000} direction="right" in={shopVariant} mountOnEnter unmountOnExit>
+                <div className={classes.shopWrapper}>
+                    <Shop variant={true} setShopVariant={setShopVariant}/>
+                </div>
+            </Slide>
+            <Slide timeout={3000} direction="left" in={!shopVariant} mountOnEnter unmountOnExit>
+                <div className={classes.shopWrapper}>
+                    <Shop variant={false} setShopVariant={setShopVariant}/>
+                </div>           
+            </Slide>
         </div>
     )
 
