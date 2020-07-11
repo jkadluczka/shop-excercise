@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import Shop from './Shop/Shop'
 import Slide from "@material-ui/core/Slide";
-import useStyles from './MainContainer.style';
+import useStyles from './mainContainer.style';
 
 const MainContainer: FC = () => {
     /*
@@ -11,18 +11,18 @@ const MainContainer: FC = () => {
     const classes = useStyles();
 
     return (
-        <div>
-            <Slide timeout={3000} direction="right" in={shopVariant} mountOnEnter unmountOnExit>
+        <>
+            <Slide timeout={1000} direction="right" in={shopVariant}>
                 <div className={classes.shopWrapper}>
-                    <Shop variant={true} setShopVariant={setShopVariant}/>
+                    <Shop variant={true} setShopVariant={setShopVariant} />
                 </div>
             </Slide>
-            <Slide timeout={3000} direction="left" in={!shopVariant} mountOnEnter unmountOnExit>
+            <Slide timeout={1000} direction="left" in={!shopVariant}>
                 <div className={classes.shopWrapper}>
-                    <Shop variant={false} setShopVariant={setShopVariant}/>
-                </div>           
+                    <Shop variant={false} setShopVariant={setShopVariant} />
+                </div>
             </Slide>
-        </div>
+        </>
     )
 
 }
